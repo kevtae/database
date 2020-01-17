@@ -1,0 +1,53 @@
+CREATE TABLE CD(
+    title varchar(10) NOT NULL,
+    year INT NOT NULL,
+    type varchar(10) NOT NULL,
+    PRIMARY KEY(title)
+);
+
+CREATE TABLE song(
+    name varchar(10) NOT NULL,
+    title varchar(10) NOT NULL,
+    artist varchar(10) NOT NULL,
+    trackNumber int NOT NULL,
+    FOREIGN KEY (title) REFERENCES CD(title)
+);
+ 
+CREATE TABLE producer(
+    name varchar(10) NOT NULL,
+    address varchar(10) NOT NULL,
+    title varchar(10) NOT NULL,
+    PRIMARY KEY(name),
+    FOREIGN KEY (title) REFERENCES CD(title)
+);
+
+CREATE TABLE supplier(
+    name varchar(10) NOT NULL,
+    address varchar(10) NOT NULL,
+    title varchar(10) NOT NULL,
+    PRIMARY KEY(name),
+    FOREIGN KEY (title) REFERENCES CD(title)
+);
+
+CREATE TABLE customer(
+    ssn varchar(10) NOT NULL,
+    name varchar(10) NOT NULL,
+    telephone varchar(10) NOT NULL,
+    PRIMARY KEY (ssn)
+);
+
+CREATE TABLE vip(
+    employee_ssn varchar(10) not null REFERENCES customer(title),
+    startingDate DATE not null,
+    discount INT not null,
+    PRIMARY KEY (employee_ssn)
+);
+
+CREATE TABLE rent(
+    ssn varchar(10) NOT NULL,
+    title varchar(10) NOT NULL,
+    date DATE not null,
+    period int not null,
+    FOREIGN KEY (title) REFERENCES CD(title),
+    FOREIGN KEY (ssn) REFERENCES customer(ssn)
+);
