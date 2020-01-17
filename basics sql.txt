@@ -1,0 +1,43 @@
+CREATE TABLE student (
+    student_id INT AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) UNIQUE,
+    age INT DEFAULT '20', /*default*/
+    PRIMARY KEY(student_id)
+);
+
+DESCRIBE student;
+
+DROP TABLE student; 
+
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+
+ALTER TABLE student DROP COLUMN major;
+
+ALTER TABLE student DROP COLUMN gpa;
+
+ALTER TABLE student ADD major VARCHAR(20);
+
+
+
+INSERT INTO student VALUES(2, 'kate' , 'Sociology' , '20');
+INSERT INTO student(student_id,name, major) VALUES(3, 'john', 'ME');
+INSERT INTO student(student_id,name) VALUES(4, 'john');
+INSERT INTO student VALUES(5, 'nate', 'CS' , '50');
+
+INSERT INTO student VALUES(6, 'david' , 'CS'); /*CS is no unique*/
+INSERT INTO student VALUES(7, NULL , 'CS'); /*can't be null*/
+
+SELECT * FROM student;
+
+UPDATE student
+SET major = 'Computer Science'
+WHERE major = "CS";
+
+UPDATE student
+SET major = 'Art'
+WHERE major IS NULL;
+
+UPDATE student
+SET major = 'Computer Science'
+WHERE major = "CS";
